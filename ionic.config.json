@@ -1,0 +1,7 @@
+{
+  "name": "mirevancha",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
