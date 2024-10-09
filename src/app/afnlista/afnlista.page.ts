@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { IonContent, MenuController } from "@ionic/angular";
 
 @Component({
   selector: 'app-afnlista',
@@ -8,6 +8,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./afnlista.page.scss'],
 })
 export class AfnlistaPage implements OnInit {
+  @ViewChild('content', { static: false }) content!: IonContent;
+
+  scrollToTop() {
+    if (this.content) {
+      this.content.scrollToTop(500);
+    }
+  }
+
   participantes: any[] = [];
 
   public cantParticipantes: number = 10;
@@ -15,7 +23,13 @@ export class AfnlistaPage implements OnInit {
   public totalPaginas: number = 0;
   public intercambia: string = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private menuCtrl: MenuController) { }
+
+
+
+  ngOnInit() {
+    this.cargarParticipantes();
+  }
 
   public cambiaColor(color: string) {
     if (color === 'verde') {
@@ -24,11 +38,6 @@ export class AfnlistaPage implements OnInit {
       this.intercambia = 'red';
     }
   }
-
-  ngOnInit() {
-    this.cargarParticipantes();
-  }
-
 
   public cargarParticipantes() {
     /*console.log("aqui estamos1")*/
@@ -61,6 +70,10 @@ export class AfnlistaPage implements OnInit {
     if (this.paginaActual < this.totalPaginas) {
       this.paginaActual++;
     }
+  }
+
+  cerrarMenu() {
+    this.menuCtrl.close();
   }
 
 
