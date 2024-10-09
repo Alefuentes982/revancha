@@ -3,13 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: '',
+    redirectTo: 'afnlogin',
+    pathMatch: 'full'
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'afnlogin',
+    loadChildren: () => import('./afnlogin/afnlogin.module').then(m => m.AfnloginPageModule)
+  },
+  {
+    path: 'afnlista/:email',
+    loadChildren: () => import('./afnlista/afnlista.module').then(m => m.AfnlistaPageModule)
   },
 ];
 

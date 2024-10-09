@@ -1,0 +1,70 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar class="ion-padding">
+      <ion-title>Menu Principal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">Lista de participantes
+  </ion-content>
+  <ion-button [ngStyle]="{'color': 'red'}" fill="clear" class="ion-align-self-start"
+    [routerLink]="['/afnlogin']">Salir</ion-button>
+</ion-menu>
+
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar class="elimina-borde">
+      <ion-buttons slot="start">
+        <ion-menu-button [ngStyle]="{'color': 'black'}"></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">
+        Lista de Participantes
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-content class="ion-padding">
+    <ion-grid class="ion-justify-content-center ion-align-items-center">
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="12" size-sm="8" size-md="8" size-lg="6">
+          <ion-card *ngFor="let p of participantes">
+            <img [src]="p.foto" alt="imagen del participante" />
+            <ion-card-header>
+              <ion-card-title>{{ p.Nombre }} {{p.Apellido}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>{{ p['Descripción'] }}</ion-card-content>
+            <ion-list>
+              <ion-item>
+                <h6>{{ p.Actividad }}</h6>
+              </ion-item>
+              <ion-item>
+                <h6>{{ p.Hora_entrada.split(' ')[1] }} - {{ p.Hora_salida.split(' ')[1] }}</h6>
+              </ion-item>
+              <ion-item>
+                <h6>{{ p['Clasificación'] }}</h6>
+              </ion-item>
+              <ion-item>
+                <h6 [ngStyle]="{'color': intercambia}">{{ p.Estado }}</h6>
+              </ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6" class="ion-text-left">
+                    <ion-button fill="clear" (click)="cambiaColor('verde')">
+                      <h6>Cambiar a Verde</h6>
+                    </ion-button>
+                  </ion-col>
+                  <ion-col size="6" class="ion-text-right">
+                    <ion-button fill="clear" (click)="cambiaColor('rojo')">
+                      <h6>Cambiar a Rojo</h6>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-list>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>
